@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sws="http://www.springframework.org/schema/web-services"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd
+http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-1.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+		<property name="xsd" value="/WEB-INF/xsd/user.xsd" />
+	</bean>
+
+	<oxm:jaxb2-marshaller id="marshaller" contextPath="schema" />
+
+	<bean id="annotationMapping"
+		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+	</bean>
+	
+	<bean id="userEndPoint" class="UserLoginEndPoint"/>
+
+	<sws:marshalling-endpoints />
+
+	<context:annotation-config />
+
+	<bean id="user"
+		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="schema" ref="schema" />
+		<property name="portTypeName" value="User" />
+		<property name="locationUri" value="/userService" />
+	</bean>
+
+</beans>

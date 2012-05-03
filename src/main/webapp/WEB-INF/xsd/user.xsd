@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gradfather.com/user"
+	xmlns:tns="http://www.gradfather.com/user" elementFormDefault="qualified">
+
+	<element name="SupplyUserCredentialsRequest">
+		<complexType>
+			<sequence>
+				<element name="LoginId" type="string" />
+				<element name="Password" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="UserCredentialsResponse">
+		<complexType>
+			<sequence>
+				<element name="result" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>
